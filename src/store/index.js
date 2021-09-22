@@ -1,13 +1,12 @@
 import { createStore } from 'vuex'
 import supabase from '../plugins/subabase'
 export default createStore({
-  // state: {
-  //   loggedIn: false
-  // },
+  state: {
+    loggedIn: false
+  },
   mutations: {
-    setLoginState(){
-      // let session = subabase.auth.session();
-      
+    setLoginState(state){
+      supabase.auth.session() != null ? (state.loggedIn = true):(state.loggedIn = false)
     }
   },
   actions: {
@@ -18,6 +17,9 @@ export default createStore({
     // gets the logged in state of the user
     getLoggedInState(){
       return supabase.auth.session != null
+    },
+    GetLoggedInState(state){
+      return state.loggedIn
     }
   }
 })
