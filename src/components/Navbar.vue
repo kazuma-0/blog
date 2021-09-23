@@ -12,8 +12,14 @@
             <div class="nav-item px-3">
                 <i class="fas fa-search" @click="Search"></i>
             </div>
-            <div class="nav-item px-3 fw-bold" @click="showLogin = true">
+            <div class="nav-item px-3 fw-bold" @click="showLogin = true" v-if="!$store.getters.getLoggedInState">
                 Login
+            </div>
+            <div class="nav-item px-3 fw-bold" @click="showLogin = true" v-if="$store.getters.GetLoggedInState">
+                New Post
+            </div>
+            <div class="nav-item px-3 fw-bold" @click="logout" v-if="$store.getters.getLoggedInState">
+                Logout
             </div>
         </div>
     </div>
@@ -26,7 +32,13 @@ export default {
     methods:{
         Search(){
             this.ShowSearch = !this.ShowSearch
+        },
+        async logout(){
+          await this.$supabase.auth.signOut()
         }
+    },
+    created(){
+        console.log(this.$store.getters.getLoggedInState)
     },
     components:{
         LoginVue
