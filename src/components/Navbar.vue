@@ -10,15 +10,15 @@
             </div>
             </transition>
             <div class="nav-item px-3">
-                <i class="fas fa-search" @click="Search"></i>
+                <i class="fas fa-search color-white" @click="Search"></i>
             </div>
-            <div class="nav-item px-3 fw-bold" @click="showLogin = true" v-if="!$store.getters.getLoggedInState">
+            <div class="nav-item color-white px-3 fw-bold pe" @click="showLogin = true" v-if="!$store.getters.getLoggedInState">
                 Login
             </div>
-            <div class="nav-item px-3 fw-bold" @click="showLogin = true" v-if="$store.getters.GetLoggedInState">
-                New Post
+            <div class="nav-item color-white px-3 fw-bold" v-if="$store.getters.GetLoggedInState">
+                <router-link to='/new' class="text-decoration-none color-white"> New post</router-link>
             </div>
-            <div class="nav-item px-3 fw-bold" @click="logout" v-if="$store.getters.getLoggedInState">
+            <div class="nav-item color-white px-3 fw-bold pe" @click="logout" v-if="$store.getters.getLoggedInState">
                 Logout
             </div>
         </div>
@@ -71,5 +71,6 @@ export default {
 .show-leave-to {
     transform: scale(0);
 }
+
 
 </style>
