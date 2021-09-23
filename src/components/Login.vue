@@ -16,9 +16,10 @@
         <h2 class="card-title text-center py-1 font-rubik">Log In</h2>
         <form @submit.prevent>
           <input type="email" class="form-control" placeholder="Email" v-model="email"/>
+          <input type="password" class="form-control mt-2" placeholder="password" v-model="password"/>
           <div class="w-100 d-flex pt-3">
             <button class="btn btn-success mx-auto" @click="Login" ref="btn">Login</button>
-            <!-- <button class="btn btn-success mx-auto" @click="show">show</button> -->
+            <button class="btn btn-success mx-auto" @click="show">show</button>
           </div>
         </form>
       </div>
@@ -63,6 +64,7 @@ export default {
     data(){
         return{
             email:'',
+            password:'',
             showAlert: false,
             error:'',
             cls:'alert-danger'
@@ -81,10 +83,17 @@ export default {
                 }, 2e3);
                 return 
             }
-            // eslint-disable-next-line no-unused-vars
-            let {user, session, error} = await this.$supabase.auth.signIn({
-                email: this.email
-            })
+            // if(password != null){
+              //   let {user, session, error} = await this.$supabase.auth.signIn({
+                //       email: this.email
+            //   })
+            // }else{
+              // eslint-disable-next-line no-unused-vars
+              let {user, session, error} = await this.$supabase.auth.signIn({
+                  email: this.email,
+                  password: this.password
+              })
+            // }
             if(error){
                 this.showAlert = true;
                 this.cls = "alert-success"
@@ -108,7 +117,8 @@ export default {
         },
         hideLoginEmit(){
             this.$emit('hide-login');
-        }
+        },
+        
     }
 }
 </script>
