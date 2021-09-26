@@ -28,4 +28,19 @@ body{
 .pe{
     cursor: pointer !important;
 }
+
+
+.fade-enter-active{
+    transition: all 0.2s ease;
+}
+.fade-enter-from{
+    opacity:0;
+}
+
+.fade-leave-active{
+    transition: all 0.2s ease;
+}
+.fade-leave-from{
+    opacity:1;
+}
 </style>
