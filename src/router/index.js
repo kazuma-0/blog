@@ -1,5 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, /*createWebHistory,*/ createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import subabase from '../plugins/subabase'
 
 const routes = [
   {
@@ -19,12 +20,31 @@ const routes = [
     path: '/new',
     name: 'New',
     component: () => import(/* webpackChunkName: "new" */ '../views/NewPost.vue')
+  },
+  {
+    path: '/post/:pid',
+    name: 'Post',
+    component: () => import(/* webpackChunkName: "post" */ '../views/Post.vue')
+  },
+  {
+    path: '/manage',
+    name: 'Manage',
+    component: () => import(/* webpackChunkName: "manage" */ '../views/Manage.vue')
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes
 })
 
+router.beforeEach((to, from , next)=>{
+  if(subabase.auth.session() == null && to.name == "New"){
+    next('/')
+  }
+  else if(subabase.auth.session() == null && to.name == "Manage"){
+    next('/');
+  }
+  next();
+})
 export default router
