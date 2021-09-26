@@ -104,11 +104,7 @@ export default {
                 console.error(error)
             }
             else{
-                this.error = "Email sent"
-                this.showAlert = true;
-                setInterval(() => {
-                    this.showAlert = false;
-                }, 2e3);
+              this.hideLoginEmit();
             }
         },
 
