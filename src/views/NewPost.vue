@@ -2,7 +2,9 @@
   <div class="min-vh-100 h-full ovf ofv-2">
       <nav class="navbar px-3 color-white">
           <div class="navbar-brand ">
+              <router-link to="/" class="text-decoration-none color-white">
               <i class="fa fa-home" aria-hidden="true"></i>
+              </router-link>
           </div>
 
           <div class="d-flex">
