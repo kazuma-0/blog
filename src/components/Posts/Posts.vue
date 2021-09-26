@@ -6,30 +6,32 @@
             </div>
         </div>
     </div>
+    <Loading v-if="posts.length == 0"/>
 </template>
 
 <script>
-
+import Loading from '../Loading.vue'
 import Post from './Post.vue'
 export default {
     data(){
         return{
-            image:'https://res.cloudinary.com/practicaldev/image/fetch/s--DORb23Ft--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5y95tgkycpzdco1hvahx.jpeg',
             posts:[]
         }
     },
     components:{
-        Post
+        Post,
+        Loading
     },
     created(){
-        // console.log(this.$supabase.)
         this.fetchPosts()
     },
     methods:{
+        // fn to fetch the posts ordered by id 
         async fetchPosts(){
             let {error, data} = await this.$supabase
             .from('Posts')
-            .select('*');
+            .select('*')
+            .order('id');
             if(error){
                 console.log(error)
             }else{
