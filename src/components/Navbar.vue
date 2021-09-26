@@ -4,13 +4,16 @@
             Blog
         </div>
         <div class="d-flex">
-            <transition name="show">
+            <!-- <transition name="show">
             <div class="nav-item px-3" v-if="ShowSearch">
                 <input type="text" class="" placeholder="not implemented yet" disabled>
             </div>
             </transition>
             <div class="nav-item px-3">
                 <i class="fas fa-search color-white" @click="Search"></i>
+            </div> -->
+            <div class="nav-item color-white px-3 fw-bold pe" v-if="$store.getters.getLoggedInState">
+                <router-link class="color-white text-decoration-none" to="/manage">Manage</router-link>
             </div>
             <div class="nav-item color-white px-3 fw-bold pe" @click="showLogin = true" v-if="!$store.getters.getLoggedInState">
                 Login
