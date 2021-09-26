@@ -8,7 +8,9 @@
     />
     <div class="card-body">
       <h2 class="card-title">
+        <router-link :to="{name: 'Post', params:{pid: post.pid}}" class="text-decoration-none color-white">
         {{ post.title }}
+        </router-link>
       </h2>
 
       <div class="card-body-text">
@@ -39,6 +41,5 @@ export default {
 <style lang="scss" scoped>
 *{
     font-family: rubik;
-    // font-weight: bold;
 }
 </style>
