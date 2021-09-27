@@ -1,10 +1,17 @@
 <template>
+    <div class="home position-absolute top-0 end-0 p-3">
+        <router-link to="/" class="text-decoration-none">
+        <i class="fa fa-home color-white"></i>
+        </router-link>
+    </div>
     <div class="container pt-5">
-        <div class="md-view">
+        <div class="md-view rubik">
             <Markdown :html="true" :source="post.content" class="color-white"></Markdown>
         </div>
     </div>
+    <transition name="fade">
     <Loading v-if="!post.hasOwnProperty('content')"/>
+    </transition>
 </template>
 
 
@@ -32,12 +39,9 @@ export default {
              .select('*')
              .eq('pid', this.$route.params.pid)
              if(error){
-                 console.log(error)
                  this.post = {}
              }else{
                  this.post = data[0];
-                 console.log(data);
-                 console.log(this.$route.params.pid)
              }
          }
      }
@@ -45,7 +49,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-*{
+.rubik{
     font-family: rubik;
 }
 </style>

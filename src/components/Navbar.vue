@@ -26,7 +26,9 @@
             </div>
         </div>
     </div>
+    <!-- <transition name="fade"> -->
     <LoginVue @hide-login="showLogin= false" v-if="showLogin"/>
+    <!-- </transition> -->
 </template>
 
 <script>
@@ -38,10 +40,11 @@ export default {
         },
         async logout(){
           await this.$supabase.auth.signOut()
+          this.$store.commit('setLoginState');
         }
     },
     created(){
-        console.log(this.$store.getters.getLoggedInState)
+        this.$store.getters.getLoggedInState;
     },
     components:{
         LoginVue

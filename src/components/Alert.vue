@@ -1,8 +1,8 @@
 <template>
 <transition name="fade">
   <div class="position-absolute top-10 start-50 l50 z-50">
-      <div :class="'alert alert-dissmisable px-2 pb-2 ' + Cls" role="alert" tabindex="">
-      <h4>{{Content}}</h4>
+      <div :class="'alert alert-dissmisable px-2 py-1  ' + Cls" role="alert" tabindex="-1">
+      <span>{{Content}}</span>
       </div>
   </div>
 </transition>

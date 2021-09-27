@@ -31,16 +31,22 @@ body{
 
 
 .fade-enter-active{
-    transition: all 0.2s ease;
+    transition: all .4s ease;
 }
 .fade-enter-from{
-    opacity:0;
+    opacity:0 !important;
+}
+.fade-leave-to{
+  opacity:1;
 }
 
 .fade-leave-active{
-    transition: all 0.2s ease;
+    transition: all .4s ease;
 }
 .fade-leave-from{
-    opacity:1;
+    opacity:1 !important;
+}
+.fade-leave-to{
+  opacity: 0 ;
 }
 </style>
