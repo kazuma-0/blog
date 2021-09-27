@@ -45,17 +45,15 @@ export default {
         console.log(error);
       } else {
         this.posts = data;
-        console.log(this.posts);
       }
     },
     async deletPost(id){
         console.log(id)
-        // if(!confirm("delete post?")){
-        //     return
-        // }
+        if(!confirm("delete post?")){
+            return
+        }
         let {data, error} = await this.$supabase
         .from('Posts')
-        // .delete()
         .delete()
         .eq('id',id);
         if(error){
