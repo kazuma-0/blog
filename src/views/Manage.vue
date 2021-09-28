@@ -16,7 +16,7 @@
                 <button class="btn btn-danger me-3" @click.prevent="()=>{deletPost(post.id)}">
                     <i class="fas fa-trash" ></i> Delete
                 </button>
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" @click.prevent="()=>{routepage(post.pid)}">
                     <i class="fas fa-edit"></i> Edit
                 </button>
             </div>
@@ -64,6 +64,9 @@ export default {
             // update 
             this.getAllPosts();
         }
+    },
+    routepage(pid){
+      this.$router.push({name:'Edit', params:{pid: pid}})
     }
   },
   data() {
