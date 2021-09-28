@@ -30,6 +30,11 @@ const routes = [
     path: '/manage',
     name: 'Manage',
     component: () => import(/* webpackChunkName: "manage" */ '../views/Manage.vue')
+  },
+  {
+    path: '/edit/:pid',
+    name: 'Edit',
+    component: () => import(/* webpackChunkName: "edit" */ '../views/EditPost.vue')
   }
 ]
 
@@ -43,6 +48,9 @@ router.beforeEach((to, from , next)=>{
     next('/')
   }
   else if(subabase.auth.session() == null && to.name == "Manage"){
+    next('/');
+  }
+  else if(subabase.auth.session() == null && to.name == "Edit"){
     next('/');
   }
   next();
