@@ -14,16 +14,15 @@
       </h2>
 
       <div class="card-body-text">
-        {{ post.short_description }} ...
+        {{ post.short_description }}
       </div>
-
-      <div class="tags d-flex" v-if="post.tags != null">
+      <div class="tags d-flex" v-if="post.tags != ''">
         <div
           class="tag me-2 rounded px-1 text-muted"
           v-for="tag in post.tags.split(',')"
           :key="tag"
         >
-          #{{ tag.trim() }}
+          #{{tag.trim() }}
         </div>
       </div>
     </div>
