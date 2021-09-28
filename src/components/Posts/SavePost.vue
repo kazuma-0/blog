@@ -45,7 +45,7 @@ export default {
             if(this.thumbnail == ""){
                 this.thumbnail = null
             }
-            const {data, error} = await this.$supabase.from('Posts')
+            const { data ,error} = await this.$supabase.from('Posts')
             .insert([{
                 title:this.title,
                 content:this.Content,
@@ -56,7 +56,8 @@ export default {
             if(error){
                 console.log(error)
             }else{
-                console.log(data);
+                // console.log(data);
+                this.$router.push({name:'Post', params:{pid: data[0].pid}});
             }
         }
     },
