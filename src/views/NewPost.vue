@@ -14,7 +14,7 @@
     <div class="container-fluid h-100">
       <div class="row h-80">
         <div class="col-lg-6 col-12 h-100 p-2">
-          <textarea
+          <!-- <textarea
             spellcheck="false"
             name="text"
             class="
@@ -29,19 +29,28 @@
               bg-textarea
             "
             v-model="source"
-          ></textarea>
+          ></textarea> -->
+          <MonacoEditor
+            class="h-100 w-100 bg-textarea"
+            theme="vs-dark"
+            language="html"
+            :options="monacoOptions"
+            @change="OnEditorChange"
+            :value="code"
+          />
+            <!-- v-model="code" -->
         </div>
         <div class="col-lg-6 col-12 h-100 overflow-scroll hide-scroll">
           <div class="p-2">
             <div class="md-preview p-2 color-white">
-              <Markdown :source="source" :html="true" :breaks="true" />
+              <Markdown :source="code" :html="true" :breaks="true" />
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <save-post :Content="source" @hide-save="showSave = false" v-if="showSave" />
+  <save-post :Content="code" @hide-save="showSave = false" v-if="showSave" />
 </template>
 
 <style scoped>
@@ -95,19 +104,37 @@
 <script>
 /* eslint-disable no-unused-vars */
 import Markdown from "vue3-markdown-it";
+import MonacoEditor from "vue-monaco";
+import { h } from "vue";
+MonacoEditor.render = () => h("div");
+
 import "highlight.js/styles/monokai.css";
 import SavePost from "../components/Posts/SavePost.vue";
 export default {
   components: {
     Markdown,
     SavePost,
+    MonacoEditor,
   },
   data() {
     return {
       source: "",
       showSave: false,
+      monacoOptions: {
+        fontLigatures: true,
+        minimap: {
+          enabled: false,
+        },
+        lineNumbersMinChars: 3,
+      },
+      code:""
     };
   },
-  props: {},
+  props:{},
+  methods:{
+    OnEditorChange(val){
+      this.code = val
+    }
+  }
 };
 </script>
